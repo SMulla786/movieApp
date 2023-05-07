@@ -1,6 +1,15 @@
 // Load existing registrations from local storage
-const existingRegistrations =
-  JSON.parse(localStorage.getItem("registrations")) || [];
+const existingRegistrations = JSON.parse(
+  localStorage.getItem("registrations")
+) || [
+  {
+    id: 1,
+    name: "Mulla Suhel Faiyyaj",
+    age: 22,
+    username: "Smulla786",
+    password: "Suhel@123",
+  },
+];
 let lastId = existingRegistrations.length
   ? existingRegistrations[existingRegistrations.length - 1].id
   : 0;
