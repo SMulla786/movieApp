@@ -203,12 +203,63 @@
     height: 30px;
     text-align: center;
 }
+@media only screen and (max-width: 568px) {
+  .container {
+    max-width: 90%;
+    flex-direction: column;
+  }
+  .wrapper {
+    margin: 50px auto;
+  }
+  .wrapper .title {
+    font-size: 24px;
+    height: 70px;
+  }
+  .wrapper form {
+    padding: 20px;
+  }
+  .wrapper form .row input,
+  input {
+    font-size: 14px;
+  }
+  .wrapper form .row i {
+    font-size: 16px;
+    width: 40px;
+  }
+  .wrapper form .button input {
+    font-size: 18px;
+  }
+  .container img{
+    /* display: none; */
+    height: 200px;
+    align-self: center;
+    justify-self: center;
+  }
+  #registerForm input, #registerBtn {
+    width: 200px;
+  }
+  .modal-content{
+    width: 90%;
+    margin: 20% 5% ;
+  }
+}
+#registerBtn{
+  color: #fff;
+                      font-size: 20px;
+                      height: 50px;
+                      width: 90%;
+                      margin-top: 20px;
+                      border-radius: 10px;
+                      background: #f0233c;
+                      border: 1px solid #f6001d;
+                      cursor: pointer
+    }
+
   </style>
   <body>
     <div class="container">
         <img src="https://m.media-amazon.com/images/M/MV5BMTUwNjUxMTM4NV5BMl5BanBnXkFtZTgwODExMDQzMTI@._V1_.jpg" 
-        height="100%"
-        width="50%" alt="">
+        style="height: 100%; width:40%;" alt="">
      
       <div class="wrapper"><div>
         <div class="title">
@@ -274,15 +325,7 @@
                     />
                     <button type="button" id="show-password"><i class="fa-regular fa-eye"></i></button>
                   </div>
-                  <button type="submit" style="color: #fff;
-                  font-size: 20px;
-                  height: 50px;
-                  width: 90%;
-                  margin-top: 20px;
-                  border-radius: 10px;
-                  background: #f0233c;
-                  border: 1px solid #f6001d;
-                  cursor: pointer;" id="registerBtn">Register</button>
+                  <button type="submit"  id="registerBtn">Register</button>
                   </form>
                 </form>
               </div>
