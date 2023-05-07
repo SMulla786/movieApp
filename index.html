@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Form | CodingLab</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      background: #161623;
+      /*overflow: hidden;*/
+    }
+    ::selection {
+      background: rgba(26, 188, 156, 0.3);
+    }
+    .container {
+      max-width: 55%;
+      padding: 0 20px;
+      margin: 100px auto;
+    }
+    .wrapper {
+      width: 100%;
+      background: #1f1f2d;
+      border-radius: 5px;
+      box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+    }
+    .wrapper .title {
+      height: 90px;
+      background: #1f1f2d;
+      border-radius: 5px 5px 0 0;
+      color: #fff;
+      font-size: 30px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapper form {
+      padding: 30px 25px 25px 25px;
+    }
+    .wrapper form .row {
+      height: 45px;
+      margin-bottom: 15px;
+      position: relative;
+    }
+    #PasswordInput,
+    #usernameInput {
+      padding-left: 60px;
+    }
+    .wrapper form .row input,
+    input {
+      height: 100%;
+      width: 100%;
+      outline: none;
+
+      border-radius: 5px;
+      border: 1px solid lightgrey;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    form .row input:focus {
+      border-color: #26263b;
+      box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+    }
+    form .row input::placeholder {
+      color: #999;
+    }
+    .wrapper form .row i {
+      position: absolute;
+      width: 47px;
+      height: 100%;
+      color: #fff;
+      font-size: 18px;
+      background: #0d0d11;
+      border: 1px solid #0e0e14;
+      border-radius: 5px 0 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wrapper form .pass {
+      margin: -8px 0 20px 0;
+    }
+    .wrapper form .pass a {
+      color: #16a085;
+      font-size: 17px;
+      text-decoration: none;
+    }
+    .wrapper form .pass a:hover {
+      text-decoration: underline;
+    }
+    .wrapper form .button input {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 500;
+      padding-left: 0px;
+      background: #f0233c;
+      border: 1px solid #f01a33;
+      cursor: pointer;
+    }
+    form .button input:hover {
+      background: #f0233c;
+    }
+    .wrapper form .signup-link {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 17px;
+    }
+    .wrapper form .signup-link a {
+      color: #f0152f;
+      text-decoration: none;
+    }
+    .modal{
+        color: #f0152f;
+    }
+    form .signup-link a:hover {
+      text-decoration: underline;
+    }
+    .age {
+      
+
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    #register-modal {
+      background-color: #1f1f2d;
+    }
+    .modal-content {
+      background-color: black; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      font-size: 1.3rem;
+      margin: 10% 30%;
+      padding: 40px 70px;
+      border: 1px solid #888;
+      width: 30%;
+    }
+   .container{
+    display: flex;
+   }
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .password-input {
+      position: relative;
+    }
+
+    #password {
+      padding-right: 30px;
+    }
+
+    #show-password {
+      position: absolute;
+      right: 0;
+      top: 0;
+      border: none;
+    }
+    .modal-content form input{
+        height: 100px;
+    }
+    input#username ,input#name,.age ,.password-input,#show-password{
+    height: 30px;
+    text-align: center;
+}
+  </style>
+  <body>
+    <div class="container">
+        <img src="https://m.media-amazon.com/images/M/MV5BMTUwNjUxMTM4NV5BMl5BanBnXkFtZTgwODExMDQzMTI@._V1_.jpg" 
+        height="100%"
+        width="50%" alt="">
+     
+      <div class="wrapper"><div>
+        <div class="title">
+          <span>Welcome Back</span>
+        </div>
+        <form action="#">
+          <div class="row">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              id="usernameInput"
+              name="signInUsername"
+              placeholder="Username"
+            />
+          </div>
+          <div class="row">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" name="signInPassword" minlength="6" id="PasswordInput" />
+          </div>
+          <div class="pass"><a href="#">Forgot password?</a></div>
+          <div class="row button">
+            <input type="submit" id="signInBtn" value="Login" />
+          </div>
+          <div class="signup-link" style="color: white">
+            Not a member? <a id="open-modal">Signup now</a>
+        </div>
+            <div  id="registerForm" class="modal">
+              <div   class="modal-content">
+                <span style="margin-top: -40px;margin-left: 130%;" class="close">&times;</span>
+                <h2 style="
+                
+                border-radius: 5px 5px 0 0;
+                color: #fff;
+                font-size: 30px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                justify-content: center;">Register</h2>
+                <form id="modal-form">
+                  <label for="username">Username:</label>
+                  <input type="text" id="username" name="username" minlength="4" />
+                  <label for="name">name:</label>
+                  <input type="text" id="name" name="name" />
+                  <label for="age">Age:</label>
+                  <input
+                    type="number"
+                    class="age"
+                    name="age"
+                    min="10"
+                    max="99"
+                    required
+                  />
+
+                  <label for="password">Password:</label>
+
+                  <div class="password-input">
+                    <input
+                      type="password"
+                      id="Reg-password"
+                      name="password"
+                      minlength="6"
+                      required
+                    />
+                    <button type="button" id="show-password"><i class="fa-regular fa-eye"></i></button>
+                  </div>
+                  <button type="submit" style="color: #fff;
+                  font-size: 20px;
+                  height: 50px;
+                  width: 90%;
+                  margin-top: 20px;
+                  border-radius: 10px;
+                  background: #f0233c;
+                  border: 1px solid #f6001d;
+                  cursor: pointer;" id="registerBtn">Register</button>
+                  </form>
+                </form>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+   
+
+      // Toggle password visibility
+      var passwordInput = document.getElementById("password");
+      var showPasswordButton = document.getElementById("show-password");
+
+      showPasswordButton.onclick = function () {
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          showPasswordButton.innerText = "Hide";
+        } else {
+          passwordInput.type = "password";
+          showPasswordButton.innerHTML = `<i class="fa-regular fa-eye"></i>`;
+        }
+      };
+      
+  const registerForm = document.getElementById("open-modal");
+  registerForm.addEventListener("click", () => {
+    const modal = document.getElementById("registerForm");
+    modal.style.display = "block";
+    const modalContent = document.getElementById
+  })
+  const close = document.getElementsByClassName("close")[0];
+  close.onclick = function () {
+    const modal = document.getElementById("registerForm");
+    modal.style.display = "none";}
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    // Get the button that opens the modal
+   
+
+    // // get the form element inside the modal
+// const form = modal.querySelector("form");
+
+// // listen for the form's submit event
+// form.addEventListener("submit", (event) => {
+  
+
+//   // get the form input values
+//   const firstName = form.elements["first-name"].value;
+//   const lastName = form.elements["last-name"].value;
+//   const email = form.elements["email"].value;
+//   const password = form.elements["password"].value;
+
+//   // create a user object with the input values
+//   const user = {
+//     firstName,
+//     lastName,
+//     email,
+//     password
+//   };
+//   console.log(user);
+//   // store the user object in local storage as a JSON string
+//   localStorage.setItem("user", JSON.stringify(user));
+
+//   // close the modal
+  
+// });
+
+    </script>
+    <script src="./script.js"></script>
+  </body>
+</html>
