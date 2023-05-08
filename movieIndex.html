@@ -5,5 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      background: #0b0b0c;
+      margin: 0 50px;
+      /* overflow: hidden; */
+    }
+    .nav-container{
+      margin: 30px 0px;
+      display: flex;
+      width: calc(90%);
+      height: 50px;
+      font-size: 17;
+      justify-content: space-between;
+      margin-bottom: 100px;
+    }
+    .nav-menu{
+      display: flex;
+      gap :5%;
+      justify-content: space-between;
+      align-items: center;
+      flex-grow: 2;
+      justify-self: flex-end;
+      margin-right: -120px;
+    
+    }
+    .nav-menu img{
+      width: 50px;
+      border-radius: 25px;
+    }
+    .nav-container .logo-container{
+      flex-grow: 2;
+      
+    }
+    .nav-menu a{
+      text-decoration: none;
+      color: rgb(125, 125, 120);
+    }
+    .nav-menu input{
+      border: none;
+      outline:#020202 ;
+      padding-left: 30px;
+      background: #404044;
+      height: 70%;
+      /* margin-left: 10%; */
+      width:50% ;
+      border-radius: 50px;
+      color: #fff ;
+
+    }
+    .sidebar-genre{
+      gap: 15px;
+      display: flex;
+      color: rgb(125, 125, 120);
+      flex-direction: column;
+    }
+  </style>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <div class="logo-container"><img width="50px" class="nav-logo" src="./logo.jpg" alt=""></div>
+        
+        <div class="nav-menu">
+          <input type="text" placeholder="Search any Movies or TV Shows">
+          <a href="#">Movies</a>
+          <a href="#"><pre>TV Shows</pre></a>
+          <a href="#">Watchlist</a>
+          <img class="nav-avatar" src="./avatar.jpg" alt="">
+      </div>
+    </nav>
+    <main>
+      <div class="continer">
+        <div class="Sidebar">
+          <div class="sidebar-genre">
+          <h3 style="color: #fff;">Genre</h3>
+          <p>Action</p>
+          <p>Horror</p>
+          <p>Comedy</p>
+          <p>Adventure</p>
+          <p>Drama</p>
+          <p>Sci-fi</p>
+          <p>More ...</p>
+        </div>
+        </div>
+        <div class="main-content"></div>
+        <div class="new-content"></div>
+      </div>
+    </main>
+  </body>
 </html>

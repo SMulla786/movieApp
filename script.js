@@ -15,7 +15,10 @@ let lastId = existingRegistrations.length
   : 0;
 
 // Handle form submission
-
+var arr = [
+  "https://m.media-amazon.com/images/I/81KJ-sK0YpS._SY879_.jpg",
+  "https://m.media-amazon.com/images/M/MV5BMTUwNjUxMTM4NV5BMl5BanBnXkFtZTgwODExMDQzMTI@._V1_.jpg",
+];
 const btn = document.getElementById("registerBtn");
 btn.onclick = function () {
   // Create new registration object with unique ID
