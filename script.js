@@ -73,7 +73,8 @@ signInBtn.onclick = function () {
   );
 
   if (matchedRegistration) {
-    alert(`Welcome ${matchedRegistration.name} !`);
+    // alert(`Welcome ${matchedRegistration.name} !`);
+    window.location.href = "./movieIndex.html";
     // Clear sign-in form
     document.getElementById("signInForm").reset();
   } else {
