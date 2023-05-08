@@ -1,5 +1,5 @@
 const apiKey = "c0be837d2dd80bb881003fccf749261f";
-const apiUrl = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`;
+const apiUrl = `https://api.themoviedb.org/3/trending/movie/week?api_key=c0be837d2dd80bb881003fccf749261f`;
 
 fetch(apiUrl)
   .then((response) => response.json())
@@ -30,17 +30,17 @@ fetch(apiUrl)
   })
   .catch((error) => console.log(error));
 
-const apiUrl2 = `https://api.themoviedb.org/3/movie/343611?api_key=${apiKey}`;
-var movieData;
-fetch(apiUrl2)
-  .then((response) => response.json())
-  .then((data) => {
-    movieData = data; // store the JSON object data in a variable
-    console.log(movieData); // log the variable to the console
-    // do something with the data, such as display it on the page
-  })
-  .catch((error) => console.error(error)); // handle any errors
-console.log(movieData);
+// const apiUrl2 = `https://api.themoviedb.org/3/movie/343611?api_key=${apiKey}`;
+// var movieData;
+// fetch(apiUrl2)
+//   .then((response) => response.json())
+//   .then((data) => {
+//     movieData = data; // store the JSON object data in a variable
+//     console.log(movieData); // log the variable to the console
+//     // do something with the data, such as display it on the page
+//   })
+//   .catch((error) => console.error(error)); // handle any errors
+// console.log(movieData);
 const searchInput = document.getElementsByClassName("search")[0];
 
 searchInput.addEventListener("keyup", async () => {
