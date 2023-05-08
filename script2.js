@@ -48,6 +48,9 @@ searchInput.addEventListener("keyup", async () => {
     const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchInput.value}`;
     const response = await fetch(url);
     const data = await response.json();
+    if (searchInput.value == "") {
+      location.reload();
+    }
     const movies = data.results;
     const container = document.getElementsByClassName("movie-cards")[0];
     container.innerHTML = "";
