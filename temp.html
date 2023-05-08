@@ -1,0 +1,69 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      
+          </style>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+           
+                
+        </div>
+      </div>
+      <div class="new-content">
+
+        
+<script>
+    const movie={
+    "adult": false,
+    "backdrop_path": "/qmEKe0AEsns2WXinbkGxlCxlTHq.jpg",
+    "id": 493529,
+    "title": "Dungeons & Dragons: Honor Among Thieves",
+    "original_language": "en",
+    "original_title": "Dungeons & Dragons: Honor Among Thieves",
+    "overview": "A charming thief and a band of unlikely adventurers undertake an epic heist to retrieve a lost relic, but things go dangerously awry when they run afoul of the wrong people.",
+    "poster_path": "/v7UF7ypAqjsFZFdjksjQ7IUpXdn.jpg",
+    "media_type": "movie",
+    "genre_ids": [
+        12,
+        14,
+        35
+    ],
+    "popularity": 2087.59,
+    "release_date": "2023-03-23",
+    "video": false,
+    "vote_average": 7.544,
+    "vote_count": 951
+}
+    const modalMain=document.getElementById("modal");
+const modal = document.createElement("div");
+
+      modal.className = "modal";
+      modal.innerHTML = `
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="modal-page">
+    <div class="modal-image">
+        <img src="https://image.tmdb.org/t/p/w185${movie.poster_path}" alt="">
+        </div>
+        <div class="modal-text">
+    
+    <h2> ${movie.title}</h2>
+    <p><pre> ${movie.release_date.slice(0,4)} | &#11088 ${movie.vote_average}</pre></p>
+    <hr>
+    <p>${movie.overview}</p>
+</div>
+</div>
+  </div>
+`;
+
+modalMain.appendChild(modal);
+</script>
+
+  </body>
+</html>
