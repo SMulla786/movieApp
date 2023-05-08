@@ -13,7 +13,7 @@ const existingRegistrations = JSON.parse(
 let lastId = existingRegistrations.length
   ? existingRegistrations[existingRegistrations.length - 1].id
   : 0;
-
+var issignIn = false;
 // Handle form submission
 var arr = [
   "https://m.media-amazon.com/images/I/81KJ-sK0YpS._SY879_.jpg",
@@ -74,6 +74,7 @@ signInBtn.onclick = function () {
 
   if (matchedRegistration) {
     // alert(`Welcome ${matchedRegistration.name} !`);
+    issignIn = true;
     window.location.href = "./movieIndex.html";
     // Clear sign-in form
     document.getElementById("signInForm").reset();
@@ -81,3 +82,20 @@ signInBtn.onclick = function () {
     alert("Invalid username or password!");
   }
 };
+function CheckSignIn() {
+  if (!issignIn) {
+    alert("please login first");
+    window.location.href = "./index.html";
+  }
+}
+const apiKey = "c0be837d2dd80bb881003fccf749261f";
+const apiUrl = `https://api.themoviedb.org/3/movie/343611?api_key=${apiKey}`;
+
+var jsonResponse = fetch(apiUrl)
+  .then((response) => response.json())
+  .then((data) => {
+    return data; // log the JSON object data to the console
+    // do something with the data, such as display it on the page
+  })
+  .catch((error) => console.error(error)); // handle any errors
+console.log(jsonResponse);

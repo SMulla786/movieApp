@@ -41,7 +41,8 @@
     
     }
     .nav-menu img{
-      width: 50px;
+      width: 40px;
+      height: 40px;
       border-radius: 25px;
     }
     .nav-container .logo-container{
@@ -97,11 +98,11 @@
     }
     .movie-card img{
       width: 150px;
-      height: 200px;
+      height: 230px;
       border-radius: 15px;
     }
   </style>
-  <body>
+  <body onload="CheckSignIn()">
     <nav>
       <div class="nav-container">
         <div class="logo-container"><img width="50px" class="nav-logo" src="./logo.jpg" alt=""></div>
@@ -196,7 +197,9 @@
             </div>
           </div>
         </div>
-        <div class="new-content"></div>
+        <div class="new-content">
+
+        </div>
       </div>
     </main>
     <script src="./script.js"></script>
