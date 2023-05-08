@@ -78,6 +78,6 @@ signInBtn.onclick = function () {
     // Clear sign-in form
     document.getElementById("signInForm").reset();
   } else {
-    alert("Invalid username or password!");
+    alert("Invalid username or password! register first");
   }
 };
