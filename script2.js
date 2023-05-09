@@ -172,8 +172,8 @@ fetch(apiUrl3)
     <div class="modal-page">
     <div class="modal-image">
         <img src="https://image.tmdb.org/t/p/w185${movie.poster_path}" alt="">
-        </div>
-        <div class="modal-text">
+    </div>
+    <div class="modal-text">
     
     <h2> ${movie.title}</h2>
     <p><pre> ${movie.release_date.slice(0, 4)} | &#11088 ${
