@@ -1,0 +1,118 @@
+const searchInput = document.getElementsByClassName("search")[0];
+
+searchInput.addEventListener("keyup", async () => {
+  try {
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchInput.value}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    if (searchInput.value == "") {
+      location.reload();
+    }
+    const movies = data.results;
+    const container = document.getElementsByClassName("movie-cards")[0];
+    container.innerHTML = ``;
+    console.log(movies);
+    movies.forEach((movie) => {
+      const posterUrl = `https://image.tmdb.org/t/p/w185${movie.poster_path}`;
+      const card = document.createElement("div");
+      card.className = "movie-card";
+      card.innerHTML = `
+  <img src="${posterUrl}" alt="">
+  <p>${movie.title}</p>
+  <p>&#11088 ${movie.vote_average}</p>
+`;
+      const modal = document.createElement("div");
+      modal.className = "modal";
+      modal.innerHTML = `
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-page">
+        <div class="modal-image">
+            <img src="https://image.tmdb.org/t/p/w185${
+              movie.poster_path
+            }" alt="">
+            </div>
+            <div class="modal-text">
+        
+        <h2> ${movie.title}</h2>
+        <p><pre> ${movie.release_date.slice(0, 4)} | &#11088 ${
+        movie.vote_average
+      }</pre></p>
+        <hr>
+        <p>${movie.overview}</p>
+    </div>
+    </div>
+      </div>
+    `;
+      card.addEventListener("click", () => {
+        modal.style.display = "block";
+      });
+      modal.querySelector(".close").addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+      container.appendChild(modal);
+
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+async function genreSearch(genreId, genreName) {
+  try {
+    const genreApiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`;
+    const response = await fetch(genreApiUrl);
+    const data = await response.json();
+    const movies = data.results;
+    const container = document.getElementsByClassName("movie-cards")[0];
+    container.innerHTML = `<h2 style="width:100%;">Top ${genreName} Movies</h2>`;
+
+    movies.forEach((movie) => {
+      const posterUrl = `https://image.tmdb.org/t/p/w185${movie.poster_path}`;
+      const card = document.createElement("div");
+      card.className = "movie-card";
+      card.innerHTML = `
+            <img src="${posterUrl}" alt="">
+            <p>${movie.title}</p>
+            <p>&#11088 ${movie.vote_average}</p>
+          `;
+
+      const modal = document.createElement("div");
+      modal.className = "modal";
+      modal.innerHTML = `
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <div class="modal-page">
+                <div class="modal-image">
+                  <img src="https://image.tmdb.org/t/p/w185${
+                    movie.poster_path
+                  }" alt="">
+                </div>
+                <div class="modal-text">
+                  <h2>${movie.title}</h2>
+                  <p>${movie.release_date.slice(0, 4)} | &#11088 ${
+        movie.vote_average
+      }</p>
+                  <hr>
+                  <p>${movie.overview}</p>
+                </div>
+              </div>
+            </div>
+          `;
+
+      card.addEventListener("click", () => {
+        modal.style.display = "block";
+      });
+
+      modal.querySelector(".close").addEventListener("click", () => {
+        modal.style.display = "none";
+      });
+
+      container.appendChild(modal);
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}

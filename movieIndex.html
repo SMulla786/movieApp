@@ -53,7 +53,7 @@
       text-decoration: none;
       color: rgb(125, 125, 120);
     }
-    .nav-menu input{
+    .nav-container input{
       border: none;
       outline:#020202 ;
       padding-left: 30px;
@@ -183,10 +183,12 @@
         body {
       background: #0b0b0c;
       margin: 0 5px;
+      margin: 40px;
       /* overflow: hidden; */
     }
-        .modal-page ,.nav-menu,.container{
+        .modal-page ,.nav-menu,.container,.sidebar *{
           flex-direction: column;
+          flex-wrap: wrap;
         }
         .modal-image img{
         width: 150px;
@@ -211,19 +213,27 @@
     width: 100px ;
     flex-wrap: wrap;
     }
+    .sidebar-genre,.sidebar-language{
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .nav-container {
+      flex-direction: column;
+      justify-content: center;
+    }
       }
   </style>
   <body >
     <nav>
       <div class="nav-container">
         <div class="logo-container"><img width="50px" class="nav-logo" src="./logo.jpg" alt=""></div>
-        
+        <input type="text" class="search" placeholder="Search any Movies or TV Shows">
         <div class="nav-menu">
-          <input type="text" class="search" placeholder="Search any Movies or TV Shows">
+          
           <a href="#">Movies</a>
           <a href="#"><pre>TV Shows</pre></a>
           <a href="#">Watchlist</a>
-          <img class="nav-avatar" src="./avatar.jpg" alt="">
+          
       </div>
     </nav>
     <main>
@@ -231,13 +241,14 @@
         <div class="sidebar">
           <div class="sidebar-genre">
           <h3 style="color: #fff;">Genre</h3>
-          <p>Action</p>
-          <p>Horror</p>
-          <p>Comedy</p>
-          <p>Adventure</p>
-          <p>Drama</p>
-          <p>Sci-fi</p>
-          <p>More ...</p>
+          <p onclick="genreSearch(28,`Action`)">Action</p>
+          <p onclick="genreSearch( 12, `Adventure`)">Adventure</p>
+          <p onclick="genreSearch(16, `Animation`)">Animation</p>
+          <p onclick="genreSearch(35, `Comedy`)">Comedy</p>
+          <p onclick="genreSearch(18, `Drama`)">Drama</p>
+          <p onclick="genreSearch(14, `Fantasy`)">Fantasy</p>
+          <p onclick="genreSearch(27, `Horror`)">Horror</p>
+          <p onclick="genreSearch(878, `Sci-fi`)">Sci-fi</p>
         </div>
         <div class="sidebar-language">
           <h3 style="color: #fff;">Languages</h3>
@@ -252,11 +263,11 @@
         
       </div>
         <div class="main-content">
-          <h2>Weekly Top Rated Movies</h2>
+         
           <div class="movie-cards">
             
           </div>
-          <h2>Now Playing Movies</h2>
+          
           <div class="movie-cards">
            
         </div>
@@ -274,5 +285,6 @@
       </div>
     </main>
     <script src="./script2.js"></script>
+    <script src="./search.js"></script>
   </body>
 </html>
