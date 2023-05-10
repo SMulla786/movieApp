@@ -59,10 +59,12 @@ searchInput.addEventListener("keyup", async () => {
     console.error(error);
   }
 });
+let currentPage = 1;
+const moviesPerPage = 20;
 
 async function genreSearch(genreId, genreName) {
   try {
-    const genreApiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`;
+    const genreApiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&page=${currentPage}`;
     const response = await fetch(genreApiUrl);
     const data = await response.json();
     const movies = data.results;
@@ -75,33 +77,33 @@ async function genreSearch(genreId, genreName) {
       const card = document.createElement("div");
       card.className = "movie-card";
       card.innerHTML = `
-            <img src="${posterUrl}" alt="">
-            <p>${movie.title}</p>
-            <p>&#11088 ${movie.vote_average}</p>
-          `;
+        <img src="${posterUrl}" alt="">
+        <p>${movie.title}</p>
+        <p>&#11088 ${movie.vote_average}</p>
+      `;
 
       const modal = document.createElement("div");
       modal.className = "modal";
       modal.innerHTML = `
-            <div class="modal-content">
-              <span class="close">&times;</span>
-              <div class="modal-page">
-                <div class="modal-image">
-                  <img src="https://image.tmdb.org/t/p/w185${
-                    movie.poster_path
-                  }" alt="">
-                </div>
-                <div class="modal-text">
-                  <h2>${movie.title}</h2>
-                  <p>${movie.release_date.slice(0, 4)} | &#11088 ${
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="modal-page">
+            <div class="modal-image">
+              <img src="https://image.tmdb.org/t/p/w185${
+                movie.poster_path
+              }" alt="">
+            </div>
+            <div class="modal-text">
+              <h2>${movie.title}</h2>
+              <p>${movie.release_date.slice(0, 4)} | &#11088 ${
         movie.vote_average
       }</p>
-                  <hr>
-                  <p>${movie.overview}</p>
-                </div>
-              </div>
+              <hr>
+              <p>${movie.overview}</p>
             </div>
-          `;
+          </div>
+        </div>
+      `;
 
       card.addEventListener("click", () => {
         modal.style.display = "block";
@@ -114,10 +116,29 @@ async function genreSearch(genreId, genreName) {
       container.appendChild(modal);
       container.appendChild(card);
     });
+
+    const totalMovies = data.total_results;
+    const totalPages = Math.ceil(totalMovies / moviesPerPage);
+
+    // Next Page Button
+    const nextButton = document.createElement("button");
+    nextButton.innerText = "Next Page";
+    nextButton.addEventListener("click", () => {
+      currentPage++;
+      if (currentPage <= totalPages) {
+        genreSearch(genreId, genreName);
+      }
+    });
+
+    // Add Next Page button if there are more pages
+    if (currentPage < totalPages) {
+      container.appendChild(nextButton);
+    }
   } catch (error) {
     console.error(error);
   }
 }
+
 async function languageSearch(languageCode, languageName) {
   try {
     document.getElementsByClassName("movie-cards")[1].style.display = "none";
