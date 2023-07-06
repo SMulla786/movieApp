@@ -1,206 +1,97 @@
-<!-- <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <style>
-      
-          </style>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-           
-                
-        </div>
-      </div>
-      <div class="new-content">
-
-        
-<script>
-    const movie={
-    "adult": false,
-    "backdrop_path": "/qmEKe0AEsns2WXinbkGxlCxlTHq.jpg",
-    "id": 493529,
-    "title": "Dungeons & Dragons: Honor Among Thieves",
-    "original_language": "en",
-    "original_title": "Dungeons & Dragons: Honor Among Thieves",
-    "overview": "A charming thief and a band of unlikely adventurers undertake an epic heist to retrieve a lost relic, but things go dangerously awry when they run afoul of the wrong people.",
-    "poster_path": "/v7UF7ypAqjsFZFdjksjQ7IUpXdn.jpg",
-    "media_type": "movie",
-    "genre_ids": [
-        12,
-        14,
-        35
-    ],
-    "popularity": 2087.59,
-    "release_date": "2023-03-23",
-    "video": false,
-    "vote_average": 7.544,
-    "vote_count": 951
-}
-    const modalMain=document.getElementById("modal");
-const modal = document.createElement("div");
-
-      modal.className = "modal";
-      modal.innerHTML = `
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <div class="modal-page">
-    <div class="modal-image">
-        <img src="https://image.tmdb.org/t/p/w185${movie.poster_path}" alt="">
-        </div>
-        <div class="modal-text">
-    
-    <h2> ${movie.title}</h2>
-    <p><pre> ${movie.release_date.slice(0,4)} | &#11088 ${movie.vote_average}</pre></p>
-    <hr>
-    <p>${movie.overview}</p>
-</div>
-</div>
-  </div>
-`;
-
-modalMain.appendChild(modal);
-</script>
-
-  </body>
-</html> -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-  <head>
-    <title>Movie Details</title>
-    <style>
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.4);
-      }
-
-      .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 800px;
-      }
-
-      .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-
-      .close:hover,
-      .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-      }
-    </style>
   </head>
   <body>
-    <h1>Movie Details</h1>
-    <button id="openModalBtn">Open Modal</button>
-
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2 id="movieTitle"></h2>
-        <p id="movieOverview"></p>
-        <div id="movieCast"></div>
-        <div id="movieVideos"></div>
-        <div id="movieImages"></div>
-        <p id="movieReleaseDate"></p>
-      </div>
-    </div>
-
-    <script>
-      const apiKey = "c0be837d2dd80bb881003fccf749261f";
-      const movieId = 24428;
-      const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&append_to_response=casts,videos,images,release_dates`;
-
-      const openModalBtn = document.getElementById("openModalBtn");
-      const modal = document.getElementById("modal");
-      const closeBtn = document.getElementsByClassName("close")[0];
-      const movieTitle = document.getElementById("movieTitle");
-      const movieOverview = document.getElementById("movieOverview");
-      const movieCast = document.getElementById("movieCast");
-      const movieVideos = document.getElementById("movieVideos");
-      const movieImages = document.getElementById("movieImages");
-      const movieReleaseDate = document.getElementById("movieReleaseDate");
-
-      // Open the modal when the button is clicked
-      openModalBtn.addEventListener("click", () => {
-        modal.style.display = "block";
-      });
-
-      // Close the modal when the close button is clicked
-      closeBtn.addEventListener("click", () => {
-        modal.style.display = "none";
-      });
-
-      // Fetch movie details from the API
-      fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiKey}&append_to_response=casts,videos,images,release_dates`)
-        .then((response) => response.json())
-        .then((data) => {
-          // Update the modal with movie details
-          movieTitle.textContent = data.title;
-          movieOverview.textContent = data.overview;
-
-          // Cast
-          const cast = data.casts.cast.slice(0, 4);
-          
-          cast.forEach((actor) => {
-            const actorName = document.createElement("p");
-            actorName.textContent = actor.name;
-            movieCast.appendChild(actorName);
-          });
-
-          // Videos
-          // ...
-
-          videos.forEach((video) => {
-            const videoKey = video.key;
-            const videoUrl = `https://www.youtube.com/watch?v=${videoKey}`;
-
-            const videoLink = document.createElement("a");
-            videoLink.href = videoUrl;
-            videoLink.textContent = video.name;
-            movieVideos.appendChild(videoLink);
-          });
-
-          // Images
-          const images = data.images.backdrops;
-          images.forEach((image) => {
-            const imageUrl = `https://image.tmdb.org/t/p/w500${image.file_path}`;
-
-            const imageElement = document.createElement("img");
-            imageElement.src = imageUrl;
-            movieImages.appendChild(imageElement);
-          });
-
-          // Release Date
-          const releaseDate = data.release_dates.results[0].release_date;
-          movieReleaseDate.textContent = `Release Date: ${releaseDate}`;
-        })
-        .catch((error) => {
-          console.error("Error fetching movie details:", error);
-        });
-    </script>
+    <div id="trailer-container"></div>
   </body>
+  <script>
+    const apiKey = "c0be837d2dd80bb881003fccf749261f";
+    const apiUrl = "https://api.themoviedb.org/3";
+
+    // Function to fetch upcoming movies
+    async function fetchUpcomingMovies() {
+      try {
+        const response = await fetch(
+          `${apiUrl}/movie/upcoming?api_key=${apiKey}`
+        );
+        const data = await response.json();
+        return data.results;
+      } catch (error) {
+        console.error("Error fetching upcoming movies:", error);
+        return [];
+      }
+    }
+
+    // Function to fetch movie trailers for a movie ID
+    async function fetchMovieTrailers(movieId) {
+      try {
+        const response = await fetch(
+          `${apiUrl}/movie/${movieId}/videos?api_key=${apiKey}`
+        );
+        const data = await response.json();
+        return data.results;
+      } catch (error) {
+        console.error("Error fetching movie trailers:", error);
+        return [];
+      }
+    }
+
+    // Function to create a card for each movie trailer
+    // Function to create a card for each movie trailer
+    function createMovieCard(trailer) {
+      const card = document.createElement("div");
+      card.classList.add("movie-card");
+
+      const trailerTitle = document.createElement("h3");
+      trailerTitle.textContent = "Trailer: " + trailer.name;
+      card.appendChild(trailerTitle);
+
+      const video = document.createElement("iframe");
+      video.src = `https://www.youtube.com/embed/${trailer.key}`;
+      video.setAttribute("frameborder", "0");
+      video.setAttribute("allowfullscreen", "true");
+      card.appendChild(video);
+
+      return card;
+    }
+
+    // Function to display movie trailers in card format
+    function displayMovieTrailers(trailers) {
+      const container = document.getElementById("trailer-container");
+
+      // Filter trailers that contain "trailer" or "teaser" in their name
+      const filteredTrailers = trailers.filter((trailer) => {
+        const trailerName = trailer.name.toLowerCase();
+        return trailerName.includes("official trailer");
+        // || trailerName.includes("official")
+      });
+      console.log(filteredTrailers);
+      filteredTrailers.forEach((trailer) => {
+        const card = createMovieCard(trailer);
+        container.appendChild(card);
+      });
+    }
+    // Example usage
+    fetchUpcomingMovies()
+      .then((movies) => {
+        // Fetch trailers for all upcoming movies
+        if (movies.length > 0) {
+          const movieIds = movies.map((movie) => movie.id);
+          return Promise.all(movieIds.map(fetchMovieTrailers));
+        } else {
+          return Promise.reject("No upcoming movies found.");
+        }
+      })
+      .then((trailersArray) => {
+        const trailers = trailersArray.flat();
+        displayMovieTrailers(trailers);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  </script>
 </html>

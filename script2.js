@@ -26,7 +26,7 @@ fetch(apiUrl)
         .then((NewData) => {
           newMovie = NewData;
 
-          // You can access the newMovie variable here or perform any further operations with the data
+          // access the newMovie variable here or perform any further operations with the data
           console.log(newMovie);
         })
         .catch((error) => {

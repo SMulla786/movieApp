@@ -1,4 +1,4 @@
-const searchInput = document.getElementsByClassName("search")[0];
+const searchInput = document.getElementsByClassName("search-input")[0];
 
 searchInput.addEventListener("keyup", async () => {
   try {
@@ -127,6 +127,7 @@ async function genreSearch(genreId, genreName) {
       currentPage++;
       if (currentPage <= totalPages) {
         genreSearch(genreId, genreName);
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     });
 
@@ -197,3 +198,22 @@ async function languageSearch(languageCode, languageName) {
     console.error(error);
   }
 }
+
+// Get all the navbar links
+const navbarLinks = document.querySelectorAll(".navbar-link");
+
+// Function to handle link click event
+function handleLinkClick(e) {
+  // Remove 'active' class from all links
+  navbarLinks.forEach((link) => {
+    link.classList.remove("active");
+  });
+
+  // Add 'active' class to the clicked link
+  e.target.classList.add("active");
+}
+
+// Attach click event listener to each navbar link
+navbarLinks.forEach((link) => {
+  link.addEventListener("click", handleLinkClick);
+});
