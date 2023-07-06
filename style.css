@@ -229,7 +229,15 @@ p:active {
   /* background-color: #fff; */
 }
 .nxtBtn {
-  justify-self: center;
+  align-self: center;
+  margin: 2% 40%;
+  width: 100px;
+  height: 40px;
+  color: #fff;
+  background-color: #f0233c;
+  border: none;
+  border: 1px solid #f01a33;
+  border-radius: 10px;
 }
 /* -------------- for resposive ------------------------------*/
 @media only screen and (max-width: 668px) {

@@ -1,9 +1,11 @@
-const apiUrlt = "https://api.themoviedb.org/3";
+const trailerUrl = "https://api.themoviedb.org/3";
 
 // Function to fetch upcoming movies
 async function fetchUpcomingMovies() {
   try {
-    const response = await fetch(`${apiUrlt}/movie/upcoming?api_key=${apiKey}`);
+    const response = await fetch(
+      `${trailerUrl}/movie/upcoming?api_key=${apiKey}`
+    );
     const data = await response.json();
     return data.results;
   } catch (error) {
@@ -16,7 +18,7 @@ async function fetchUpcomingMovies() {
 async function fetchMovieTrailers(movieId) {
   try {
     const response = await fetch(
-      `${apiUrlt}/movie/${movieId}/videos?api_key=${apiKey}`
+      `${trailerUrl}/movie/${movieId}/videos?api_key=${apiKey}`
     );
     const data = await response.json();
     return data.results;
@@ -45,16 +47,14 @@ function createMovieCard(trailer) {
 }
 
 // Function to display movie trailers in card format
-// Function to display movie trailers in card format
 function displayMovieTrailers(trailers) {
   const container = document.getElementById("trailer-container");
 
-  // Filter trailers that contain "trailer" or "teaser" in their name
+  // Filter trailers that contain "trailer" in their name
   const filteredTrailers = trailers
     .filter((trailer) => {
       const trailerName = trailer.name.toLowerCase();
       return trailerName.includes("trailer");
-      // || trailerName.includes("teaser");
     })
     .splice(1, 8);
 

@@ -123,6 +123,7 @@ async function genreSearch(genreId, genreName) {
     // Next Page Button
     const nextButton = document.createElement("button");
     nextButton.innerText = "Next Page";
+    nextButton.classList.add("nxtBtn");
     nextButton.addEventListener("click", () => {
       currentPage++;
       if (currentPage <= totalPages) {
